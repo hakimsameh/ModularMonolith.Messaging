@@ -13,7 +13,7 @@ var logger = Log.Logger = new LoggerConfiguration()
                           .Enrich.FromLogContext()
                           .WriteTo.Console()
                           .CreateLogger();
-logger.Information("Starting Web Host");
+logger.Information("Starting Application");
 var builder = WebApplication.CreateBuilder(args);
 List<Assembly> assemblies = [typeof(Program).Assembly];
 var services = builder.Services;
@@ -25,4 +25,5 @@ var bus = provider.GetRequiredService<IBus>();
 
 Console.WriteLine("Publishing HelloMessage...");
 await bus.SendAsync(new HelloMessage { Text = "Hello from main!" });
-
+logger.Information("Finished");
+Console.ReadKey();

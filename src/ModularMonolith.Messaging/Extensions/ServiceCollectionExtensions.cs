@@ -7,7 +7,8 @@ namespace ModularMonolith.Messaging.Extensions;
 
 public static class MessagingServiceCollectionExtensions
 {
-    public static IServiceCollection AddInMemoryMessaging(this IServiceCollection services, params Assembly[] assemblies)
+    public static IServiceCollection AddInMemoryMessaging(this IServiceCollection services, 
+        params Assembly[] assemblies)
     {
         // Register Consumers
         foreach (var assembly in assemblies)
@@ -30,7 +31,8 @@ public static class MessagingServiceCollectionExtensions
         return services;
     }
 
-    private static IServiceCollection AddMessageMiddlewares(this IServiceCollection services, params Assembly[] assemblies)
+    private static IServiceCollection AddMessageMiddlewares(this IServiceCollection services, 
+        params Assembly[] assemblies)
     {
         var middlewareTypes = assemblies
             .SelectMany(a => a.GetTypes())
