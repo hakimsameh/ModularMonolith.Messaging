@@ -1,0 +1,2 @@
+License To Use SamSoft.ModularMonolith.Messaging
+This Package For Sending Message Using In Memory Bus To Send and Consume Messages Between Modules.
