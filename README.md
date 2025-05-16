@@ -1,6 +1,8 @@
 This Package For Sending Message Using In Memory Bus To Send and Consume Messages Between Modules.
 
-**Registration**
-In Program.cs
+# Registration
+In _Program.cs_
+
 builder.Services.AddInMemoryMessaging([Assemblies])
-Pass Assemblies as Array Of Registered Assemblies
+
+Pass all modules assemblies as array 
