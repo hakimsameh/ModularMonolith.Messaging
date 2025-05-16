@@ -11,6 +11,10 @@
 		<PackageReadmeFile>ReadMe.md</PackageReadmeFile>
 		<PackageProjectUrl>https://github.com/hakimsameh/ModularMonolith.Messaging</PackageProjectUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<AssemblyVersion>1.0.1.0</AssemblyVersion>
+		<FileVersion>$(AssemblyVersion)</FileVersion>
+		<Version>$(AssemblyVersion)</Version>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 	</PropertyGroup>
 
 	<ItemGroup>
