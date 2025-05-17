@@ -26,4 +26,8 @@ var bus = provider.GetRequiredService<IBus>();
 Console.WriteLine("Publishing HelloMessage...");
 await bus.SendAsync(new HelloMessage { Text = "Hello from main!" });
 logger.Information("Finished");
+Console.WriteLine("-------------------------------------------------");
+Console.WriteLine("Publishing Another HelloMessage...");
+await bus.SendAsync(new HelloMessage { Text = "Another Message!" });
+logger.Information("Finished");
 Console.ReadKey();

@@ -36,7 +36,7 @@ internal class InMemoryBus : IBus
         await pipeline();
     }
 
-    private async Task InvokeConsumer<TMessage>(TMessage message, IServiceProvider provider, CancellationToken cancellationToken)
+    private static async Task InvokeConsumer<TMessage>(TMessage message, IServiceProvider provider, CancellationToken cancellationToken)
     {
         var consumers = provider.GetServices<IConsumer<TMessage>>();
         if (consumers == null || !consumers.Any())

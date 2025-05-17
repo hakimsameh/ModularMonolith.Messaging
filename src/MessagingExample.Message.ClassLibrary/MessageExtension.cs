@@ -1,7 +1,4 @@
-﻿using MessagingExample.Message.ClassLibrary.Middlewares;
-using Microsoft.Extensions.DependencyInjection;
-using ModularMonolith.Messaging.Abstractions;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
 namespace MessagingExample.Message.ClassLibrary;

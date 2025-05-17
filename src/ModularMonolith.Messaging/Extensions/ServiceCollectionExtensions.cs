@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using ModularMonolith.Messaging.Abstractions;
 using ModularMonolith.Messaging.Internal;
 using System.Reflection;
@@ -10,7 +11,6 @@ public static class MessagingServiceCollectionExtensions
     public static IServiceCollection AddInMemoryMessaging(this IServiceCollection services, 
         params Assembly[] assemblies)
     {
-        // Register Consumers
         foreach (var assembly in assemblies)
         {
             var consumerTypes = assembly.GetTypes()
@@ -26,7 +26,7 @@ public static class MessagingServiceCollectionExtensions
             }
         }
 
-        services.AddSingleton<IBus, InMemoryBus>();
+        services.TryAddSingleton<IBus, InMemoryBus>();
         services.AddMessageMiddlewares(assemblies);
         return services;
     }
