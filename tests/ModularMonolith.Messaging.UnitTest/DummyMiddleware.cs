@@ -1,5 +1,5 @@
-﻿using ModularMonolith.Messaging.Abstractions;
-using ModularMonolith.Messaging.Attributes;
+﻿using ModularMonolith.Messaging.Abstractions.Core;
+//using ModularMonolith.Messaging.Attributes;
 
 namespace ModularMonolith.Messaging.UnitTest;
 

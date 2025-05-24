@@ -1,22 +1,15 @@
-using Microsoft.Extensions.DependencyInjection;
-using ModularMonolith.Messaging.Abstractions;
-using ModularMonolith.Messaging.Attributes;
+﻿using Microsoft.Extensions.DependencyInjection;
+using ModularMonolith.Messaging.Abstractions.Core;
 using System.Reflection;
 
-namespace ModularMonolith.Messaging.Internal;
+namespace ModularMonolith.Messaging.Abstractions.Infrastructure;
 
-internal class InMemoryBus : IBus
+internal class SyncInMemoryBus(IServiceProvider serviceProvider) : IBus
 {
-    private readonly IServiceProvider _serviceProvider;
-
-    public InMemoryBus(IServiceProvider serviceProvider)
-    {
-        _serviceProvider = serviceProvider;
-    }
 
     public async Task SendAsync<TMessage>(TMessage message, CancellationToken cancellationToken = default)
     {
-        using var scope = _serviceProvider.CreateScope();
+        using var scope = serviceProvider.CreateScope();
         var scopedProvider = scope.ServiceProvider;
 
         var middlewares = scopedProvider

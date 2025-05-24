@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
-using ModularMonolith.Messaging.Abstractions;
+using ModularMonolith.Messaging.Abstractions.Core;
 using System.Diagnostics;
 
 namespace MessagingExample.Message.ClassLibrary.Middlewares;

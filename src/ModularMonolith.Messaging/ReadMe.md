@@ -153,8 +153,24 @@ builder.Services.AddCartModule(assemblies);
 builder.Services.AddCustomerModule(assemblies);
 builder.Services.AddOrderModule(assemblies);
 builder.Services.AddPaymentModule(assemblies);
-// Add Messaging Service
-builder.Services.AddInMemoryMessaging(assemblies.ToArray());
+
+
+// Add Messaging Service (sync in-memory bus)
+//builder.Services.AddInMemoryMessaging(assemblies.ToArray());
+
+
+// async in-memory bus with options
+services.AddAsyncInMemoryMessaging(options =>
+{
+    options.MaxConcurrentMessages = 10;
+    options.MaxQueueSize = 500;
+    options.MaxRetries = 5;
+    options.RetryDelay = TimeSpan.FromSeconds(2);
+}, assemblies.ToArray());
+
+// async in-memory bus without options
+//services.AddAsyncInMemoryMessaging(assemblies: assemblies.ToArray());
+
 
 .
 .

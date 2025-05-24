@@ -1,4 +1,4 @@
-﻿using ModularMonolith.Messaging.Abstractions;
+﻿using ModularMonolith.Messaging.Abstractions.Core;
 
 namespace ModularMonolith.Messaging.UnitTest;
 

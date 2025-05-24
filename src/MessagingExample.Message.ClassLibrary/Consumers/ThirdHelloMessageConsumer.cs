@@ -4,9 +4,9 @@ using ModularMonolith.Messaging.Abstractions.Core;
 
 namespace MessagingExample.Message.ClassLibrary.Consumers;
 
-internal class HelloMessageConsumer(ILogger<HelloMessageConsumer> logger) : IConsumer<HelloMessage>
+internal sealed class ThirdHelloMessageConsumer(ILogger<ThirdHelloMessageConsumer> logger) : IConsumer<HelloMessage>
 {
-    public async Task ConsumeAsync(HelloMessage message, CancellationToken cancellationToken)
+    public async Task ConsumeAsync(HelloMessage message, CancellationToken cancellationToken = default)
     {
         Console.WriteLine("------------------------------------------------------------");
         logger.LogInformation("Starting: {Consumer} Received: {Message}", GetType().Name, message.Text);
@@ -15,5 +15,4 @@ internal class HelloMessageConsumer(ILogger<HelloMessageConsumer> logger) : ICon
         logger.LogInformation("Ending: {Consumer} Received: {Message}", GetType().Name, message.Text);
 
     }
-
 }

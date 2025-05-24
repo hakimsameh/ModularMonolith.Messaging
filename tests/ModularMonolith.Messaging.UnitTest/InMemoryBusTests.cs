@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using ModularMonolith.Messaging.Abstractions;
-using ModularMonolith.Messaging.Internal;
+using ModularMonolith.Messaging.Abstractions.Core;
+using ModularMonolith.Messaging.Abstractions.Infrastructure;
 
 namespace ModularMonolith.Messaging.UnitTest;
 
@@ -29,7 +29,7 @@ public class InMemoryBusTests
         services.AddScoped<IMessageMiddleware<HelloMessage>, NonMatchingMiddleware<HelloMessage>>();
         services.AddScoped<IMessageMiddleware<HelloMessage>, BeforeOnlyMiddleware<HelloMessage>>();
         services.AddScoped<IMessageMiddleware<HelloMessage>, AfterOnlyMiddleware<HelloMessage>>();
-        services.AddSingleton<IBus, InMemoryBus>();
+        services.AddSingleton<IBus, SyncInMemoryBus>();
 
         var provider = services.BuildServiceProvider();
         _bus = provider.GetRequiredService<IBus>();
@@ -65,7 +65,7 @@ public class InMemoryBusTests
     public async Task Should_Throw_When_No_Consumer_Found()
     {
         var bus = new ServiceCollection()
-            .AddSingleton<IBus, InMemoryBus>()
+            .AddSingleton<IBus, SyncInMemoryBus>()
             .BuildServiceProvider()
             .GetRequiredService<IBus>();
 

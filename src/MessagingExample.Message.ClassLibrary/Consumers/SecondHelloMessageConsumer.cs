@@ -1,14 +1,18 @@
 ﻿using MessagingExample.Message.ClassLibrary.Messages;
-using ModularMonolith.Messaging.Abstractions;
+using Microsoft.Extensions.Logging;
+using ModularMonolith.Messaging.Abstractions.Core;
 
 namespace MessagingExample.Message.ClassLibrary.Consumers;
 
-internal class SecondHelloMessageConsumer : IConsumer<HelloMessage>
+internal class SecondHelloMessageConsumer(ILogger<SecondHelloMessageConsumer> logger) : IConsumer<HelloMessage>
 {
-    public Task ConsumeAsync(HelloMessage message, CancellationToken cancellationToken)
+    public async Task ConsumeAsync(HelloMessage message, CancellationToken cancellationToken)
     {
-        Console.WriteLine($"[Second Consumer] Received: {message.Text}");
-        return Task.CompletedTask;
+        Console.WriteLine("------------------------------------------------------------");
+        logger.LogInformation("Starting: {Consumer} Received: {Message}", GetType().Name, message.Text);
+        Console.WriteLine($"[{GetType().Name}] Received: {message.Text}");
+        await Task.Delay(1000, cancellationToken); // Simulate some work
+        logger.LogInformation("Ending: {Consumer} Received: {Message}", GetType().Name, message.Text);
     }
 
 }
